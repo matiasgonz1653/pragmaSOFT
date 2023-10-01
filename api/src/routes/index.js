@@ -1,7 +1,6 @@
 const { Router } = require("express");
-const { Serie } = require("../db");
-const { getAllSeries, getDetailsSeries, serieUpd} = require("../controller/series");
 const router = Router();
+const { getAllSeries, getDetailsSeries, serieUpd} = require("../controller/series");
 
 //obtener todas las series
 router.get("/series", async function (req, res) {
@@ -40,7 +39,5 @@ router.put('/series/:id', async (req, res, next) => {
         next(error);
     } 
 })
-
-
 
 module.exports = router;

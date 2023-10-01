@@ -10,7 +10,7 @@ let sequelize =
         database: DB_NAME,
         dialect: "postgres",
         host: DB_HOST,
-        port: DB_PORT,
+        port: DB_PORT||5432,
         username: DB_USER,
         password: DB_PASSWORD,
         pool: {
@@ -21,6 +21,7 @@ let sequelize =
         dialectOptions: {
           ssl: {
             require: true,
+            // Ref.: https://github.com/brianc/node-postgres/issues/2009
             rejectUnauthorized: false,
           },
           keepAlive: true,
@@ -33,6 +34,7 @@ let sequelize =
     );
 
 const basename = path.basename(__filename);
+
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
@@ -49,13 +51,6 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-//const { Series } = sequelize.models;
-
-// Aca vendrian las relaciones
-
-//-----------------
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
