@@ -35,9 +35,23 @@ const getDetailsSeries = async (id) => {
     }
 }
 
+//actualizar una serie seleccionada
+const serieUpd = async (id,serie) => {
+    try {
+        return await Serie.update(serie,{   
+            where: {
+                id: id
+            }
+        })
+    } catch (error) {
+        return(error)
+    }
+}
+
 
 module.exports = {
     getAllSeries,
-    getDetailsSeries
+    getDetailsSeries,
+    serieUpd
 }
 

@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const { Serie } = require("../db");
-const { getAllSeries, getDetailsSeries} = require("../controller/series");
+const { getAllSeries, getDetailsSeries, serieUpd} = require("../controller/series");
 const router = Router();
 
-
+//obtener todas las series
 router.get("/series", async function (req, res) {
     const { name } = req.query;
     const seriesTotal = await getAllSeries();
@@ -16,7 +16,7 @@ router.get("/series", async function (req, res) {
     }
 })
 
-
+//obtener la serie por el id ingresado
 router.get("/series/:id", async (req, res) => {
     const { id } = req.params;
     const allSerie = await getDetailsSeries();
@@ -29,32 +29,18 @@ router.get("/series/:id", async (req, res) => {
     }
 });
 
-router.post("/serie", async (req, res) => {
-    let {
-        name,
-        description,
-        date,
-        stars,
-        gender,
-        price,
-        atp,
-        state,
-    } = req.body;
+//editar solamente la serie por su serieId
+router.put('/series/:id', async (req, res, next) => {
+    let {id} = req.params
+    let serie = req.body;
+    try {
+        const serie_Upd = await serieUpd(id,serie);
+        res.status(200).json(serie_Upd);
+    } catch (error) {
+        next(error);
+    } 
+})
 
-    await Serie.create({
-        name,
-        description,
-        date,
-        stars,
-        gender,
-        price,
-        atp,
-        state,
-        createdAtDb,
-    });
-    });
 
-    
-    res.status(200).send("Serie creada! :D");
 
 module.exports = router;
