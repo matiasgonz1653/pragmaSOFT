@@ -36,7 +36,7 @@ const getDetailsSeries = async (id) => {
 }
 
 //actualizar una serie seleccionada
-const serieUpd = async (id,serie) => {
+const updSerie = async (id,serie) => {
     try {
         return await Serie.update(serie,{   
             where: {
@@ -48,10 +48,23 @@ const serieUpd = async (id,serie) => {
     }
 }
 
+//eliminar serie por id ingresado
+const deleteSerie = async (id) => {
+    try {
+        await Serie.destroy({   
+            where: {                                            
+                id : id,
+            }
+        })
+    } catch (error) {
+        return error
+    }
+}
 
 module.exports = {
     getAllSeries,
     getDetailsSeries,
-    serieUpd
+    updSerie,
+    deleteSerie
 }
 

@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const router = Router();
-const { getAllSeries, getDetailsSeries, serieUpd} = require("../controller/series");
+const { 
+    getAllSeries, 
+    getDetailsSeries, 
+    updSerie,
+    deleteSerie } = require("../controller/series");
 
 //obtener todas las series
 router.get("/series", async function (req, res) {
@@ -33,11 +37,22 @@ router.put('/series/:id', async (req, res, next) => {
     let {id} = req.params
     let serie = req.body;
     try {
-        const serie_Upd = await serieUpd(id,serie);
+        const serie_Upd = await updSerie(id,serie);
         res.status(200).json(serie_Upd);
     } catch (error) {
         next(error);
     } 
 })
+
+//eliminar solamente la serie por su id
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await deleteSerie(id)
+        res.status(200).send('deleted serie!!')
+    } catch (error) {
+        return(error);
+    }
+});
 
 module.exports = router;
