@@ -1,0 +1,42 @@
+[
+    {
+        "name": "pelicula 1",
+        "description": "la pelicula numero 1",
+        "date": "15/10/1238",
+        "stars": "5",
+        "gender": "comedia",
+        "price": "123",
+        "atp": "true",
+        "state": "ACTIVO"
+    },
+    {
+        "name": "pelicula 2",
+        "description": "la pelicula numero 2",
+        "date": "1/12/1238",
+        "stars": "5",
+        "gender": "comedia",
+        "price": "123.15",
+        "atp": "true",
+        "state": "ANULADO"
+    },
+    {
+        "name": "pelicula 3",
+        "description": "la pelicula numero 3",
+        "date": "04/12/1238",
+        "stars": "5",
+        "gender": "comedia",
+        "price": "123",
+        "atp": "false",
+        "state": "ACTIVO"
+    },
+    {
+        "name": "pelicula 4",
+        "description": "la pelicula numero 4",
+        "date": "04/12/1842",
+        "stars": "5",
+        "gender": "comedia",
+        "price": "123",
+        "atp": "false",
+        "state": "ACTIVO"
+    }
+]

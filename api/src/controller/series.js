@@ -51,7 +51,7 @@ const updSerie = async (id,serie) => {
 //eliminar serie por id ingresado
 const deleteSerie = async (id) => {
     try {
-        await Serie.destroy({   
+        return await Serie.destroy({   
             where: {                                            
                 id : id,
             }
@@ -64,15 +64,27 @@ const deleteSerie = async (id) => {
 
 //guardar serie 
 const createSerie = async (serie) => {
+    console.log(serie)
+    let precio = parseInt(serie.price)
     try {
-        return await Serie.findOrCreate(serie,{   
+        return await Serie.findOrCreate({
             where: {
-                name: serie.name
-            }
-        })
+                name: serie.name,
+                description: serie.description,
+                date: serie.date,
+                stars: serie.stars,
+                gender: serie.gender,
+                price: precio,
+                atp: serie.atp,
+                state: serie.state
+            },
+        });
     } catch (error) {
         return(error)
     }
+
+
+    
 }
 
 module.exports = {

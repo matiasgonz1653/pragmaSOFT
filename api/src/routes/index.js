@@ -23,14 +23,13 @@ router.get("/series", async function (req, res) {
 //obtener la serie por el id ingresado
 router.get("/series/:id", async (req, res) => {
     const { id } = req.params;
-    const allSerie = await getDetailsSeries();
+    console.log("id de param",id)
+    const serieId = await getDetailsSeries(id);
 
     if (id) {
-        let serieId = await allSerie.filter((obj) => obj.id == id);
-        serieId.length
-        ? res.status(200).send(serieId)
-        : res.status(404).send("Serie no encontrada");
+        return res.status(200).send(serieId)
     }
+    return res.status(404).send("Serie no encontrada");
 });
 
 //editar solamente la serie por su serieId
@@ -45,13 +44,12 @@ router.put('/series/:id', async (req, res, next) => {
     } 
 })
 
-//crear serie nueva
+//guardar serie 
 router.post("/serie", async (req, res) => {
     let serie = req.body;
-    
     try {
-        const serie_Put = await createSerie(serie);
-        res.status(200).json(serie_Put);
+        const serie_Post = await createSerie(serie);
+        res.json(serie_Post);
     } catch (error) {
         next(error);
     }

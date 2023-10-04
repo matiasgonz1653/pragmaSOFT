@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(6,2),
       allowNull: false,
     },
     atp: {
