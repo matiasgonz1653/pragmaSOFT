@@ -71,7 +71,7 @@ export default function Home() {
                     alt="">
                 </img>
                 </button>
-                <div className="divCrear" data-bs-theme="dark">
+                <div className="btn btn-primary">
                     <Link
                         to="/createSerie"
                         className=""
@@ -80,7 +80,7 @@ export default function Home() {
 
                 <SearchBar/>
 
-                <select onChange={e=>handleOrder(e)} class="dropdown" data-bs-theme="dark">
+                {/* <select onChange={e=>handleOrder(e)} class="dropdown" data-bs-theme="dark">
                     <option value="default">Orden Alfabetico</option>
                     <option value="Asc"> A-Z</option>
                     <option value="Des"> Z-A</option>
@@ -96,7 +96,7 @@ export default function Home() {
                         >{Generos}</option>
                         ))
                     }
-                </select>
+                </select> */}
             </div>
 
 
@@ -131,7 +131,7 @@ export default function Home() {
                                         <td>{result}</td>
                                         <td>{d.state}</td>
                                         <td><Link to={`/serie/${d.id}`}>
-                                                <button>Modificar</button>
+                                                <button className="btn btn-primary" >Modificar</button>
                                             </Link> 
                                         </td>
                                     </tr>
