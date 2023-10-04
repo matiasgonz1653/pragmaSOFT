@@ -1,9 +1,8 @@
 import React, {useState} from "react"
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import {postSerie,getSerieDetail} from "../../actions/index"
+import {postSerieId} from "../../actions/index"
 import icon from "../img/reload.png"
 import iconHome from "../img/home1.png"
 import "./edit.css"
@@ -96,18 +95,9 @@ export default function DogCreate(){
         price:serieSelect.price,
         state:serieSelect.state,
         atp:serieSelect.atp,
-        
-        // name: "" ,                                   
-        // description: "",
-        // date:"",
-        // stars: 0,
-        // gender:"", 
-        // price: 0,
-        // state:"ACTIVO",
-        // atp:false,
     })
 
-    //console.log(input)
+    console.log("input",input)
     
     function refreshPage() {
         window.location.reload(false);
@@ -164,12 +154,13 @@ export default function DogCreate(){
             messajeError()
             //alert("Error, Completa los campos con valores que cumplan las condiciones para crear tu serie")
         } else {
-            dispatch(postSerie(input))
+            dispatch(postSerieId(input))
             navigate("/")
             console.log("input enviado", input);
             //alert("Serie creada")
             alertaSerieGuardada()
             setInput({
+                id:"",
                 name:"",
                 description:"",
                 date:"",
@@ -308,8 +299,8 @@ export default function DogCreate(){
                     <div className="form-control">
                         <label>Apto para todo publico</label>
                         <input className="inputs"
-                        type= "radio"
-                        value= {input.atp}
+                        type= "checkbox"
+                        checked= {input.atp}
                         name="atp"
                         onChange={(e) => handleChecked(e)}/>
                         {errors.atp && <p className="error">{errors.atp}</p>}
@@ -318,7 +309,7 @@ export default function DogCreate(){
                     <div>
                     <select onChange={(e) => handleSelect(e)}  className="form-control form-control-lg">
                         <option hidden
-                            value={input.gender}>Generos</option>
+                            value={input.gender}>{input.gender}</option>
                         {generos.map((g) => (
                             <option
                                 key={g}
