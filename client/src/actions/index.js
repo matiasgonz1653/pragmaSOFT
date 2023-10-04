@@ -86,9 +86,10 @@ export function postSerie (payload) {
 
 
 export function postSerieId (payload) {
+    console.log("payload",payload)
     return async function(){
         try{
-            await axios.post(`/series/${payload.id}`, payload);
+            await axios.put(`/series/${payload.id}`, payload);
             return {
                 type: PUT_SERIE_ID,
             }
