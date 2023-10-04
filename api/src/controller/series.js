@@ -8,14 +8,14 @@ const getAllSeries = async () => {
 
         return{
             id: s.id,
-             name: s.name,
-             description: s.description,
-             date: s.date,
-             stars: s.stars,
-             gender: s.gender,
-             price: s.price,
-             atp: s.atp,
-             state: s.state
+            name: s.name,
+            description: s.description,
+            date: s.date,
+            stars: s.stars,
+            gender: s.gender,
+            price: s.price,
+            atp: s.atp,
+            state: s.state
         }
     })
     
@@ -61,10 +61,25 @@ const deleteSerie = async (id) => {
     }
 }
 
+
+//guardar serie 
+const createSerie = async (serie) => {
+    try {
+        return await Serie.findOrCreate(serie,{   
+            where: {
+                name: serie.name
+            }
+        })
+    } catch (error) {
+        return(error)
+    }
+}
+
 module.exports = {
     getAllSeries,
     getDetailsSeries,
     updSerie,
-    deleteSerie
+    deleteSerie,
+    createSerie
 }
 

@@ -4,6 +4,7 @@ const {
     getAllSeries, 
     getDetailsSeries, 
     updSerie,
+    createSerie,
     deleteSerie } = require("../controller/series");
 
 //obtener todas las series
@@ -43,6 +44,19 @@ router.put('/series/:id', async (req, res, next) => {
         next(error);
     } 
 })
+
+//crear serie nueva
+router.post("/serie", async (req, res) => {
+    let serie = req.body;
+    
+    try {
+        const serie_Put = await createSerie(serie);
+        res.status(200).json(serie_Put);
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 //eliminar solamente la serie por su id
 router.delete('/:id', async (req, res) => {
