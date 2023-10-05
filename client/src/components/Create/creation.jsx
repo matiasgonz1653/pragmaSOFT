@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import {postSerieId} from "../../actions/index"
+import {postSerie} from "../../actions/index"
 import icon from "../img/reload.png"
 import iconHome from "../img/home1.png"
 import "./creation.css"
@@ -133,7 +133,7 @@ export default function DogCreate(){
             messajeError()
             //alert("Error, Completa los campos con valores que cumplan las condiciones para crear tu serie")
         } else {
-            dispatch(postSerieId(input))
+            dispatch(postSerie(input))
             navigate("/")
             console.log("input enviado", input);
             //alert("Serie creada")
@@ -272,7 +272,7 @@ export default function DogCreate(){
                         <label>Apto para todo publico</label>
                         <input className="inputs"
                         type= "radio"
-                        value= {input.atp}
+                        checked= {input.atp}
                         name="atp"
                         onChange={(e) => handleChecked(e)}/>
                         {errors.atp && <p className="error">{errors.atp}</p>}
