@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/searchBar";
 import reload from "../img/reload.png"
+import { postSerieId } from "../../actions/index"
 import swal from 'sweetalert';
 
 import {
@@ -45,10 +46,12 @@ export default function Home() {
 
     function handleSubmit(e){
         console.log("handleSubmit",e);
-        //dispatch(postSerieId(e))
+        
         //alert("editar serie")
         //agregar alerta confirmacion de cambio de estado
         //alertaCambioDeEstado()
+        dispatch(postSerieId(e))
+        handleRefresh()
     }
 
 
@@ -160,13 +163,25 @@ export default function Home() {
                                         <td>
                                             <button 
                                                 type="submit"
-                                                onClick={(e) => handleSubmit(d)}
+                                                onClick={(e) => {
+                                                    let imput = {
+                                                        id:d.id,
+                                                        name:d.name,
+                                                        description:d.description,
+                                                        date:d.date,
+                                                        stars:d.stars,
+                                                        gender:d.gender,
+                                                        price:d.price,
+                                                        result:result,
+                                                        state:"ANULADO"
+                                                    }
+                                                    handleSubmit(imput)}}
                                                 className="btn btn-danger" 
                                                 >Desactivar</button> 
                                         </td> :
                                         <td>
                                             <button 
-                                                type="submit"
+                                                type="delete"
                                                 onClick={(e) => handleSubmit(e)}
                                                 className="btn btn-danger" 
                                                 >Eliminar</button> 
