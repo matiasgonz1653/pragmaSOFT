@@ -65,7 +65,6 @@ const deleteSerie = async (id) => {
 //guardar serie 
 const createSerie = async (serie) => {
     console.log(serie)
-    let precio = parseInt(serie.price)
     try {
         return await Serie.findOrCreate({
             where: {
@@ -74,7 +73,7 @@ const createSerie = async (serie) => {
                 date: serie.date,
                 stars: serie.stars,
                 gender: serie.gender,
-                price: precio,
+                price: serie.price,
                 atp: serie.atp,
                 state: serie.state
             },
