@@ -46,7 +46,6 @@ export default function Home() {
 
     function handleSubmit(e){
         console.log("handleSubmit",e);
-        
         //alert("editar serie")
         //agregar alerta confirmacion de cambio de estado
         //alertaCambioDeEstado()
