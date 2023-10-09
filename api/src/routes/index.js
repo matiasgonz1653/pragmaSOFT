@@ -60,8 +60,8 @@ router.post("/serie", async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        await deleteSerie(id)
-        res.status(200).send('deleted serie!!')
+        respusta = await deleteSerie(id)
+        res.status(200).send(respusta)
     } catch (error) {
         return(error);
     }
