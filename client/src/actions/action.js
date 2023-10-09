@@ -6,4 +6,5 @@ export const ORDER = "ORDER";
 export const POST_SERIE = "POST_SERIE";
 export const GET_DETAIL = "GET_DETAIL";
 export const PUT_SERIE_ID = "PUT_SERIE_ID";
+export const GET_DELETE = "GET_DELETE";
 

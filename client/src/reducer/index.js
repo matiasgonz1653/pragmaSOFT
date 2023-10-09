@@ -3,7 +3,8 @@ import {
     GET_GENEROS,
     ORDER,
     GET_SERIE_NAME,
-    GET_DETAIL
+    GET_DETAIL,
+    GET_DELETE
 } from "../actions/action"
 
 const initialState = {
@@ -26,8 +27,7 @@ function rootReducer(state = initialState, action) {
         case GET_DETAIL:
             return {
                 ...state,
-                detailSerie : action.payload
-            
+                series: action.payload
             }
 
 
@@ -53,7 +53,12 @@ function rootReducer(state = initialState, action) {
             }
 
 
-
+        case GET_DELETE:
+            return {
+                ...state,
+                series: action.payload,
+                allSeries: action.payload
+            }
 
          //---------------------------------------------------------   
 /*         case ORDER_BY_ALPHABETICAL:

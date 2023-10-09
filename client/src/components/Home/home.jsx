@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/searchBar";
 import reload from "../img/reload.png"
-import { postSerieId } from "../../actions/index"
+import { postSerieId, deleteSerie } from "../../actions/index"
 import swal from 'sweetalert';
 
 import {
@@ -50,6 +50,16 @@ export default function Home() {
         //agregar alerta confirmacion de cambio de estado
         //alertaCambioDeEstado()
         dispatch(postSerieId(e))
+        handleRefresh()
+    }
+
+
+    function handleDelete(e){
+        console.log("handleDelete",e);
+        //alert("editar serie")
+        //agregar alerta confirmacion de cambio de estado
+        //alertaCambioDeEstado()
+        dispatch(deleteSerie(e))
         handleRefresh()
     }
 
@@ -181,7 +191,7 @@ export default function Home() {
                                         <td>
                                             <button 
                                                 type="delete"
-                                                onClick={(e) => handleSubmit(e)}
+                                                onClick={(e) => handleDelete(d.id)}
                                                 className="btn btn-danger" 
                                                 >Eliminar</button> 
                                         </td> 

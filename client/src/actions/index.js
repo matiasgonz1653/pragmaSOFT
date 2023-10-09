@@ -6,15 +6,31 @@ import {
     POST_SERIE,
     ORDER,
     GET_DETAIL,
-    PUT_SERIE_ID
+    PUT_SERIE_ID,
+    GET_DELETE
 
 } from "./action"
+
+export function deleteSerie(id) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.delete(`/${id}`);
+            return dispatch({
+                type: GET_DELETE,
+                payload: json.data,
+            })
+        } catch (error) {
+            alert("conection failed");
+        }
+    }
+}
+
 
 export function getSerieDetail(id) {
     return async function (dispatch) {
         try {
             var json = await axios.get(`/series/${id}`);
-            console.log("json getseriedetail ",json.data)
+            //console.log("json getseriedetail ",json.data)
             return dispatch({
                 type: GET_DETAIL,
                 payload: json.data,
