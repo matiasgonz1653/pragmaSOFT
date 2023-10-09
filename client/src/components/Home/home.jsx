@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/searchBar";
 import reload from "../img/reload.png"
+import swal from 'sweetalert';
 
 import {
     filterSeriesByGenero,
@@ -41,6 +42,27 @@ export default function Home() {
     function handleRefresh() {
         window.location.reload(false);
     }
+
+    function handleSubmit(e){
+        console.log("handleSubmit",e);
+        //dispatch(postSerieId(e))
+        //alert("editar serie")
+        //agregar alerta confirmacion de cambio de estado
+        //alertaCambioDeEstado()
+    }
+
+
+    const alertaCambioDeEstado = () => {
+        swal({
+            title: "estado cambiado",
+            text:
+                "La serie cambio a estado DESACTIVADA",
+            icon: "success",
+            button: "Ok",
+        })
+    };
+
+
 
     function handleOrder(e) {
         e.preventDefault();
@@ -136,10 +158,18 @@ export default function Home() {
                                         </td>
                                         {d.state == "ACTIVO"?
                                         <td>
-                                            <button className="btn btn-danger" >Desactivar</button> 
+                                            <button 
+                                                type="submit"
+                                                onClick={(e) => handleSubmit(d)}
+                                                className="btn btn-danger" 
+                                                >Desactivar</button> 
                                         </td> :
                                         <td>
-                                            <button className="btn btn-danger" >Eliminar</button> 
+                                            <button 
+                                                type="submit"
+                                                onClick={(e) => handleSubmit(e)}
+                                                className="btn btn-danger" 
+                                                >Eliminar</button> 
                                         </td> 
                                         }
                                         
