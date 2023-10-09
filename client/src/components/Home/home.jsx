@@ -119,7 +119,7 @@ export default function Home() {
                         {allseries.length > 0 ? (
                             allseries.map(d => {
                                 let result
-                                if(d.atp == true ? result = "SI" : result = "NO")
+                                d.atp == true ? result = "SI" : result = "NO"
                                 return (
                                     <tr key={d.id}>
                                         <td>{d.name}</td>
@@ -134,6 +134,15 @@ export default function Home() {
                                                 <button className="btn btn-primary" >Modificar</button>
                                             </Link> 
                                         </td>
+                                        {d.state == "ACTIVO"?
+                                        <td>
+                                            <button className="btn btn-danger" >Desactivar</button> 
+                                        </td> :
+                                        <td>
+                                            <button className="btn btn-danger" >Eliminar</button> 
+                                        </td> 
+                                        }
+                                        
                                     </tr>
                                 )
                             })
