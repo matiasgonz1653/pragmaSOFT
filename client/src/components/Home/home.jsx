@@ -48,9 +48,8 @@ export default function Home() {
         console.log("handleSubmit",e);
         //alert("editar serie")
         //agregar alerta confirmacion de cambio de estado
-        //alertaCambioDeEstado()
-        dispatch(postSerieId(e))
-        handleRefresh()
+        alertaCambioDeEstado(e)
+
     }
 
 
@@ -58,22 +57,13 @@ export default function Home() {
         console.log("handleDelete",e);
         //alert("editar serie")
         //agregar alerta confirmacion de cambio de estado
-        //alertaCambioDeEstado()
-        dispatch(deleteSerie(e))
-        handleRefresh()
+        let result = alertaEliminarSerie(e)
+        console.log(result)
+        if(result){
+            handleRefresh()
+        }
+        
     }
-
-
-    const alertaCambioDeEstado = () => {
-        swal({
-            title: "estado cambiado",
-            text:
-                "La serie cambio a estado DESACTIVADA",
-            icon: "success",
-            button: "Ok",
-        })
-    };
-
 
 
     function handleOrder(e) {
@@ -88,6 +78,55 @@ export default function Home() {
         dispatch(filterSeriesByGenero(e.target.value));
     }
     
+    const alertaEliminarSerie = (e) => {
+
+        swal("Estas seguro que desea eliminar la serie?", {
+            icon: 'warning',
+            buttons: {
+              cancel: "No, no eliminar",
+              catch: {
+                text: "SI, elimninar",
+                value: "si",
+              }
+            },
+          })
+          .then((value) => {
+            switch (value) {
+              case "si":
+                dispatch(deleteSerie(e))
+                handleRefresh()
+                return
+           
+              default:
+                return
+            }
+          });
+    };
+
+    const alertaCambioDeEstado = (e) => {
+
+        swal("Estas seguro que desea desactivar la serie?", {
+            icon: 'warning',
+            buttons: {
+              cancel: "No, no desactivar",
+              catch: {
+                text: "SI, desactivar",
+                value: "si",
+              }
+            },
+          })
+          .then((value) => {
+            switch (value) {
+              case "si":
+                dispatch(postSerieId(e))
+                handleRefresh()
+                return
+           
+              default:
+                return
+            }
+          });
+    };
     
     return (
         <div data-bs-theme="dark">
